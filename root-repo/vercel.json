@@ -1,26 +1,26 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "backend/server.js",
-        "use": "@vercel/node"
-      },
-      {
-        "src": "frontend/package.json",
-        "use": "@vercel/static-build",
-        "config": {
-          "distDir": "build"
-        }
+  "version": 2,
+  "builds": [
+    {
+      "src": "root-repo/backend/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "root-repo/frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
       }
-    ],
-    "rewrites": [
-      {
-        "source": "/api/(.*)",
-        "destination": "/backend/server.js"
-      },
-      {
-        "source": "/(.*)",
-        "destination": "/frontend/build/$1"
-      }
-    ]
-  }
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/root-repo/backend/server.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/root-repo/frontend/build/$1"
+    }
+  ]
+}

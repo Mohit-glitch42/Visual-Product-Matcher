@@ -3,8 +3,13 @@ const path = require("path");
 const { extractEmbedding, normalize } = require("../mobilenetSimilarity"); // adjust import as needed
 
 // --- Configuration ---
-const INPUT_FILE_PATH = path.join(__dirname, "products.json");
-const OUTPUT_FILE_PATH = path.join(__dirname, "..", "products_with_embeddings.json");
+// CORRECTED: Read from the 'backend' directory, not the 'scripts' directory
+const INPUT_FILE_PATH = path.join(__dirname, "..", "products.json");
+const OUTPUT_FILE_PATH = path.join(
+  __dirname,
+  "..",
+  "products_with_embeddings.json"
+);
 const MODEL_EMBEDDING_SIZE = 1280; // Correct size for the MobileNet model
 const CONCURRENCY_LIMIT = 5; // Set how many images to process at the same time
 

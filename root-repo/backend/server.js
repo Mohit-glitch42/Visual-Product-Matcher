@@ -11,6 +11,7 @@ const path = require("path");
 
 // --- CONFIGURATION ---
 const PORT = process.env.PORT || 8000; // Use environment variable for port
+// CORRECT: This path correctly points to the data file in the 'backend' directory.
 const PRODUCTS_DATA_PATH = path.join(
   __dirname,
   "products_with_embeddings.json"
@@ -30,6 +31,7 @@ app.use(cors());
 app.use(express.json({ limit: "5mb" }));
 
 // --- DATA LOADING ---
+// This entire block is robust and handles errors well. No changes needed.
 try {
   const rawData = fs.readFileSync(PRODUCTS_DATA_PATH, "utf8");
   const data = JSON.parse(rawData);
@@ -86,6 +88,7 @@ async function getQueryEmbeddingFromRequest(req) {
 }
 
 // --- API ROUTES ---
+// KEY: Your frontend fetch() call must use this exact path: '/api/search'
 app.post("/api/search", upload.single("image"), async (req, res) => {
   try {
     const queryEmbeddingRaw = await getQueryEmbeddingFromRequest(req);
