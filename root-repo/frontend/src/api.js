@@ -1,11 +1,13 @@
-const API_BASE_URL = "http://localhost:8000";
+// No base URL is needed for deployment when using a proxy or rewrite rule.
+// The browser will automatically use the current domain.
 
 export async function searchByImageFile(file) {
   try {
     const formData = new FormData();
     formData.append("image", file);
 
-    const res = await fetch(`${API_BASE_URL}/api/search`, {
+    // Use a relative path for the API endpoint.
+    const res = await fetch(`/api/search`, {
       method: "POST",
       body: formData,
     });
@@ -16,16 +18,17 @@ export async function searchByImageFile(file) {
     }
 
     const data = await res.json();
-    return data.results; // return the results array
+    return data.results;
   } catch (err) {
     console.error("searchByImageFile error:", err);
-    throw err; // re-throw or handle further externally
+    throw err;
   }
 }
 
 export async function searchByImageUrl(url) {
   try {
-    const res = await fetch(`${API_BASE_URL}/api/search`, {
+    // Use a relative path for the API endpoint.
+    const res = await fetch(`/api/search`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ imageUrl: url }),
@@ -37,9 +40,9 @@ export async function searchByImageUrl(url) {
     }
 
     const data = await res.json();
-    return data.results; // return the results array
+    return data.results;
   } catch (err) {
     console.error("searchByImageUrl error:", err);
-    throw err; // re-throw or handle further externally
+    throw err;
   }
 }
