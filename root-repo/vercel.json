@@ -20,7 +20,12 @@
     },
     {
       "source": "/(.*)",
-      "destination": "/root-repo/frontend/build/$1"
+      "destination": "/root-repo/frontend/build/index.html"
     }
-  ]
+  ],
+  "functions": {
+    "root-repo/backend/server.js": {
+      "includeFiles": "root-repo/backend/products_with_embeddings.json"
+    }
+  }
 }
